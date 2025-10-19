@@ -16,7 +16,7 @@
 
 :root{
   --byzantine-blue: 220, 93%, 43%;
-  --night: 0, 0%, 6%;
+  --night: 0, 0%, 4%;
   --night-2: 0, 0%, 9%;
   --eerie-black-font: 0, 0%, 65%;
   --eerie-black-background: 0, 0%, 15%;
@@ -58,7 +58,7 @@ body{
   display: flex;
   align-items: flex-end;
   gap: 5px;
-  background: hsla(var(--night), .98);
+  background: hsla(var(--night), .99);
   color: hsl(var(--dirty-white));
   padding: 12px 18px;
   backdrop-filter: blur(6px) saturate(520%) brightness(10.1);
@@ -100,7 +100,7 @@ body{
 .navbar{
   grid-column: 1/2;
   grid-row: 2/3;
-  background-color: hsla(var(--night), 0.98);
+  background-color: hsla(var(--night), .99);
   color: hsl(var(--eerie-black-font));
   font-size: 106%;
   border-right: 1px solid hsl(var(--night));
@@ -182,3 +182,189 @@ body{
   width: 28px;
   height: 28px;
 }
+
+/* Notes */
+
+.tasksCards{
+  grid-row: 1/3;
+  padding: 32px;
+  color: hsl(var(--dirty-white));
+}
+
+.tasksCardsWrapper{
+  display: flex;
+  gap: 22px;
+}
+
+.tasksContainer{
+  width: clamp(350px, 30%, 40%);
+  background-color: hsl(var(--night-2));
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 8px;
+}
+
+.tasksContainerHeader{
+  width: 100%;
+  text-align: center;
+  font-size: 120%;
+  font-weight: 600;
+}
+
+.tasksContainerHeader h3{
+  background-color: hsl(var(--night-2));
+  padding: 8px 20px;
+  margin-bottom: 12px;
+  border-radius: 26px;
+  width: calc-size(min-content, size + 100px);
+}
+
+.tasksListUl{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+/* task element */
+
+.tasksListUl > .taskElement:last-child{
+  margin-bottom: 0px;
+}
+
+.taskElement{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 22px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.taskElement:hover{
+  background-color: hsl(var(--eerie-black-background));
+}
+
+.taskElementCheckBtn, .taskElementArchiveBtn{
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+  background-color: transparent;
+}
+
+.taskElementCheckBtn{
+  margin-bottom: 2px;
+  border-radius: 50%;
+  border: 1px solid hsl(var(--eerie-black-font));
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.taskElementCheckBtn:hover{
+  border-color: hsl(var(--barn-red));
+}
+
+.actionBtnsContainer{
+  margin-left: auto;
+}
+
+.taskElementArchiveBtn{
+  margin-top: 6px;
+  border: none;
+  width: 20px;
+  height: 20px;
+}
+
+.taskElementArchiveBtn svg{
+  fill: hsl(var(--eerie-black-font));
+  cursor: pointer;
+  transition: all .1s ease;
+}
+
+.taskElementArchiveBtn svg:hover{
+  fill: hsl(var(--barn-red));
+}
+
+/* Tasks Footer */
+
+.tasksContainerFooter{
+  margin-top: 16px;
+  padding: 8px;
+}
+
+.addTaskForm{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.addTaskInput{
+  width: 100%;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  padding: 6px 8px;
+  transition: all .2s ease
+}
+
+.addTaskInput:focus{
+  outline: none;
+  border: 2px solid hsl(var(--barn-red));
+}
+
+.arrowIcon{
+  fill: hsl(var(--eerie-black-font));
+  transition: all .2s ease;
+}
+
+.addTaskInput:not(:placeholder-shown) + .addTaskButton > .arrowIcon{
+  fill: hsl(var(--barn-red));
+}
+
+.addTaskButton{
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  right: 6px;
+  cursor: pointer;
+}
+
+/* Scrollbar */
+
+/* Target the scrollbar */
+::-webkit-scrollbar {
+  width: 4px; /* Vertical scrollbar width */
+}
+
+/* Track (background) */
+::-webkit-scrollbar-track {
+  background: hsl(var(--night-2));
+  border-radius: 10px;
+}
+
+/* Handle (thumb) */
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--eerie-black-font));
+  border-radius: 3px;
+}
+
+/* Task Editor */
+
+.taskEditor{
+  width: clamp(350px, 30%, 40%);
+  height: 100%;
+  background-color: hsl(var(--night-2));
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 8px;
+  display: block;
+} 

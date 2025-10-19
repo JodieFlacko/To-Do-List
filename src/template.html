@@ -54,7 +54,7 @@
           <div class="appSidebarHeadingItem">
             <div class="appSidebarHeadingItem_children">
               <div class="appSidebarHeadingItem_title">
-                <div class="appSidebarHeadingItem_title_text">My Lists</div>
+                <div class="appSidebarHeadingItem_title_text">My lists</div>
                 <div class="appSidebarHeadingItem_after">
                   <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="#B2B2B2" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.07" d="M12.01 7.426H3.989c-.633 0-1.146.513-1.146 1.146v4.011c0 .633.513 1.146 1.146 1.146h8.023c.633 0 1.146-.513 1.146-1.146V8.572c0-.633-.513-1.146-1.146-1.146Z"></path><path stroke="#B2B2B2" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.07" d="M5.135 7.427V5.135a2.865 2.865 0 1 1 5.73 0v2.292"></path></svg>
@@ -70,26 +70,47 @@
               </div>
             </div>
           </div>
-          <div class="AppSidebarGroupsItem">
-            <div class="AppSidebarGroupsItem_Item">
-              <button class="appSidebarGroupsItems_item_button">
-                <div class="appSidebarGroupsItems_item_categoryTitle">Work Projects</div>
-              </button>
-            </div>
-            <div class="AppSidebarGroupsItem_Item">
-              <button class="appSidebarGroupsItems_item_button">
-                <div class="appSidebarGroupsItems_item_categoryTitle">Grocery List</div>
-              </button>
-            </div>
-            <div class="AppSidebarGroupsItem_Item">
-              <button class="appSidebarGroupsItems_item_button">
-                <div class="appSidebarGroupsItems_item_categoryTitle">Personal Projects</div>
-              </button>
-            </div>
+          <div class="AppSidebarGroupsItem lists">
           </div>
         </li>
       </ul>
     </div>
-  </div>
+    <section class="tasksCards">
+      <div class="tasksContainerHeader">
+        <h3>All My Tasks</h3>
+      </div>
+
+      <div class="tasksCardsWrapper">
+        <div class="tasksContainer">
+          <ul class="tasksListUl"></ul>
+
+          <div class="tasksContainerFooter">
+            <form action="#" class="addTaskForm">
+              <input type="text" placeholder="Add task" class="addTaskInput" name="taskTitle">
+              <button class="addTaskButton">
+                <svg class="arrowIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <title>arrow-up</title>
+                  <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="taskEditor">
+          <div class="taskTitleEditor"></div>
+          <div class="propertySettersContainer">
+            <input type="date" name="dueDate" class="date-input">
+            <select name="project" id="project">
+            </select>
+            <select name="priority" class="projectSelector">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">high</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
 </body>
 </html>
