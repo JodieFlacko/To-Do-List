@@ -1,0 +1,19 @@
+let projects = [
+  "Work Project",
+  "Grocery List",
+  "Personal Project"
+];
+
+function createProject(project){
+  projects.push(project);
+}
+
+function removeProject(project){
+  projects = projects.filter(element => element !== project);
+}
+
+function getProjects(){
+  return projects;
+}
+
+export { getProjects, createProject, removeProject, }

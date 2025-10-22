@@ -1,22 +1,10 @@
-import { createEmptyNote, getNote } from "./handleNotes";
-import { displayTaskElements } from "./displayNotes";
+import { createEmptyNote, getCurrentNote, updateCurrentNote } from "./handleNotes";
+import { displayTaskElements, displayTaskEditor } from "./displayNotes";
 
 const form = document.querySelector(".addTaskForm");
 const tasksList = document.querySelector(".tasksListUl");
-
-function displayNoteCard(event){
-  // Making sure li is clicked
-  const taskElement = event.target.closest(".taskElement");
-  if(!taskElement) return;
-  const id = taskElement.dataset.id;
-  const note = getNote(id);
-  const noteCard = document.querySelector(".taskEditor");
-  const noteCardTitleEditor = noteCard.querySelector(".taskTitleEditor");
-  const noteCardProjectSelector = noteCard.querySelector(".projectSelector");
-
-  noteCardProjectSelector.textContent = "Fratm "
-  noteCardTitleEditor.textContent = note.title;
-}
+const taskEditor = document.querySelector(".taskEditor");
+const datetimeEditor = document.querySelector('.taskDateEditor');
 
 function addNoteFromForm(event, form){
   event.preventDefault();
@@ -28,7 +16,39 @@ function addNoteFromForm(event, form){
   form.reset();
 }
 
+function handleNoteEdits(event){
+
+  const parameter = event.target.name;
+  const value = event.target.value;
+
+  const note = getCurrentNote();
+  note.update(parameter, value);
+  displayTaskElements();
+  displayTaskEditor();
+}
+
+function enableTaskEdit(event){
+  // Make sure li is clicked
+  const taskElement = event.target.closest(".taskElement");
+  if(!taskElement) return;
+
+  // Update current note
+  const id = taskElement.dataset.id;
+  updateCurrentNote(id);
+  displayTaskEditor();
+}
+
 export function initEventListeners(){
   form.addEventListener("submit", event =>{ addNoteFromForm(event, form) });
-  tasksList.addEventListener("click", event => {displayNoteCard(event)});
+
+  tasksList.addEventListener("click", event => {
+    enableTaskEdit(event);
+  });
+
+  taskEditor.addEventListener('change', (e) => {
+    handleNoteEdits(e);
+  });
+
+  datetimeEditor.addEventListener('click', datetimeEditor.showPicker);
+
 }

@@ -98,16 +98,19 @@
         </div>
 
         <div class="taskEditor">
-          <div class="taskTitleEditor"></div>
+          <div class="taskTitleEditorContainer"><textarea name="title" class="taskTitleEditor" maxlength="1000"></textarea></div>
           <div class="propertySettersContainer">
-            <input type="date" name="dueDate" class="date-input">
-            <select name="project" id="project">
+            <div class="taskDateEditorWrapper">
+              <div class="taskDate"></div>
+              <input type="datetime-local" name="dueDate" class="taskDateEditor">
+            </div>
+            <select name="project" class="taskProjectEditor">
             </select>
-            <select name="priority" class="projectSelector">
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">high</option>
+            <select name="priority" class="taskPriorityEditor">
             </select>
+          </div>
+          <div class="taskNotesContainer">
+            <textarea name="notes" class="taskNotesEditor" maxlength="65535" placeholder="Insert your notes here"></textarea>
           </div>
         </div>
       </div>

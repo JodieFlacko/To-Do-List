@@ -1,62 +1,26 @@
-import { displayProjects } from "./displayNotes";
-
 let notes = [];
-let projects = [
-  "Work Project",
-  "Grocery List",
-  "Personal Project"
-];
 
 class Note{
   constructor(data){
     this.title = data.title;
     this.project = data.project;
-    this.due_date = data.due_date;
+    this.dueDate = data.dueDate;
     this.priority = data.priority;
     this.notes = data.notes;
     this.id = crypto.randomUUID();
   };
 
-  update(updates){
-    Object.keys(updates).forEach(key =>{
-      if(this.hasOwnProperty(key) && key !== 'id'){
-        this[key] = updates[key];
-      }
-    });
+  update(parameter, value){
+    this[parameter] = value;
   };
 };
 
-
 // temp
-const examples = [
-  {
-    title: "Design database schema",
-    project: "E-commerce Platform",
-    due_date: "2025-10-22",
-    priority: "high",
-    notes: "Create ERD for products, orders, and user tables. Consider indexing strategy for search optimization.",
-    id: "1"
-  },
-  {
-    title: "Update dependencies",
-    project: "Maintenance",
-    due_date: "2025-10-18",
-    priority: "medium",
-    notes: "Run npm audit and update all packages with security vulnerabilities. Test thoroughly after updates.",
-    id: "2"
-  },
-  {
-    title: "Write unit tests",
-    project: "API Development",
-    due_date: "2025-10-28",
-    priority: "medium",
-    notes: "Add test coverage for new payment processing endpoints. Aim for at least 80% coverage.",
-    id: "3"
-  },
-];
 
-examples.forEach(example => createNote(example));
 // end temp
+
+let currentNote = notes[0];
+
 
 function createNote(data){
   if (!(data instanceof Object)) {
@@ -75,7 +39,7 @@ function createEmptyNote(taskTitle){
   const data = {
     title: taskTitle,
     project: undefined,
-    due_date: undefined,
+    dueDate: undefined,
     priority: undefined,
     notes: undefined,
     id: crypto.randomUUID(),
@@ -93,19 +57,21 @@ function getNote(id){
   return note;
 }
 
+function getNoteIndex(id){
+  const index = notes.findIndex(n => n.id === id);
+  return index;
+}
+
+function updateCurrentNote(id){
+  currentNote = getNote(id);
+}
+
+function getCurrentNote(){
+  return currentNote;
+}
+
 function getNotes(){
   return notes;
 }
 
-function createProject(project){
-  projects.push(project);
-}
-
-function removeProject(project){
-  projects = projects.filter(element => element !== project);
-}
-
-function getProjects(){
-  return projects;
-}
-export {createNote, getNotes, removeNote, getNote, createEmptyNote, getProjects, createProject, removeProject};
+export {createNote, getNotes, removeNote, getNote, createEmptyNote, getNoteIndex, updateCurrentNote, getCurrentNote};
