@@ -42,8 +42,7 @@ function populateSelector(selector, values, currentNote){
     const option = document.createElement("option");
     option.textContent = value;
     option.value = value;
-
-    if(currentNote.project === option.value){
+    if(currentNote[selector.name] === option.value){
       option.selected = true;
     }
 
