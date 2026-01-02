@@ -19,8 +19,8 @@ function displayTaskEditor(){
   const noteCardPrioritySelector = noteCard.querySelector(".taskPriorityEditor");
   const projects = getProjects();
   const priorities = ["Low", "Medium", "High"];
-  populateSelector(noteCardProjectSelector, projects);
-  populateSelector(noteCardPrioritySelector, priorities);
+  populateSelector(noteCardProjectSelector, projects, note);
+  populateSelector(noteCardPrioritySelector, priorities, note);
 
   noteCardTitleEditor.value = note.title;
   if(note.dueDate !== "Due Date") {
@@ -36,12 +36,17 @@ function hideTaskEditor(){
   noteCard.style.display = "none";
 }
 
-function populateSelector(selector, values){
+function populateSelector(selector, values, currentNote){
   selector.textContent = "";
   values.forEach(value => {
     const option = document.createElement("option");
     option.textContent = value;
     option.value = value;
+
+    if(currentNote.project === option.value){
+      option.selected = true;
+    }
+
     selector.appendChild(option);
   });
 }
