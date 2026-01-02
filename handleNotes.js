@@ -39,7 +39,7 @@ function createEmptyNote(taskTitle){
   const data = {
     title: taskTitle,
     project: undefined,
-    dueDate: undefined,
+    dueDate: "Due Date",
     priority: undefined,
     notes: undefined,
     id: crypto.randomUUID(),

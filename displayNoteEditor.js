@@ -22,9 +22,12 @@ function displayTaskEditor(){
   populateSelector(noteCardPrioritySelector, priorities);
 
   noteCardTitleEditor.value = note.title;
-  if(note.dueDate) {
+  if(note.dueDate !== "Due Date") {
     const date = formatNoteDate(note.dueDate);
     noteCardDate.textContent = date;
+  }
+  else{
+    noteCardDate.textContent = note.dueDate;
   }
 }
 
