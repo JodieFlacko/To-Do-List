@@ -2,9 +2,10 @@ import { formatNoteDate } from "./helperFunctions";
 import { getCurrentNote } from "./handleNotes";
 import { getProjects } from "./handleProjects";
 
+const noteCard = document.querySelector(".taskEditor");
+
 function displayTaskEditor(){
   const note = getCurrentNote();
-  const noteCard = document.querySelector(".taskEditor");
   if(!note) {
     noteCard.style.display = "none";
     return;
@@ -31,6 +32,10 @@ function displayTaskEditor(){
   }
 }
 
+function hideTaskEditor(){
+  noteCard.style.display = "none";
+}
+
 function populateSelector(selector, values){
   selector.textContent = "";
   values.forEach(value => {
@@ -41,4 +46,4 @@ function populateSelector(selector, values){
   });
 }
 
-export {displayTaskEditor};
+export {displayTaskEditor, hideTaskEditor};
