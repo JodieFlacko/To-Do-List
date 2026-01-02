@@ -16,4 +16,4 @@ function getProjects(){
   return projects;
 }
 
-export { getProjects, createProject, removeProject, }
+export { getProjects, createProject, removeProject }

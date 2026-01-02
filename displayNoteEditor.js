@@ -29,6 +29,7 @@ function displayTaskEditor(){
 }
 
 function populateSelector(selector, values){
+  selector.textContent = "";
   values.forEach(value => {
     const option = document.createElement("option");
     option.textContent = value;
