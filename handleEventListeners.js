@@ -1,11 +1,14 @@
-import { createEmptyNote, getCurrentNote, updateCurrentNote, removeNote } from "./handleNotes";
+import { createEmptyNote, getCurrentNote, updateCurrentNote, removeNote, updateCurrentGroup } from "./handleNotes";
 import { displayTaskElements } from "./displayNotes";
 import { displayTaskEditor, hideTaskEditor } from "./displayNoteEditor";
+import { displayContent } from "./displayPageContent";
 
 const form = document.querySelector(".addTaskForm");
 const tasksList = document.querySelector(".tasksListUl");
 const taskEditor = document.querySelector(".taskEditor");
 const datetimeEditor = document.querySelector('.taskDateEditor');
+const navbar = document.querySelector(".appSidebarNav_Items");
+
 
 function addNoteFromForm(event, form){
   event.preventDefault();
@@ -49,6 +52,16 @@ function deleteTask(event){
   hideTaskEditor();
 }
 
+function handleNavbar(event){
+  if(!event.target.closest(".appSidebarGroupsItems_item_button")) return;
+  else { 
+    const button = event.target.closest(".appSidebarGroupsItems_item_button")
+    const group = button.querySelector(".appSidebarGroupsItems_item_categoryTitle").textContent;
+    updateCurrentGroup(group);
+    displayContent(group);
+  }
+}
+
 export function initEventListeners(){
   form.addEventListener("submit", event =>{ addNoteFromForm(event, form) });
 
@@ -59,6 +72,10 @@ export function initEventListeners(){
 
   taskEditor.addEventListener('change', (e) => {
     handleNoteEdits(e);
+  });
+
+  navbar.addEventListener("click", (event) => {
+    handleNavbar(event);
   });
 
 

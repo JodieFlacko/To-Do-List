@@ -32,4 +32,4 @@ function displayHomePage(){
   displayProjects();
 }
 
-export { displayHomePage };
+export { displayHomePage, displayContent };

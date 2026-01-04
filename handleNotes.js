@@ -20,7 +20,7 @@ class Note{
 // end temp
 
 let currentNote = notes[0];
-
+let currentGroup = "All My Tasks";
 
 function createNote(data){
   if (!(data instanceof Object)) {
@@ -36,10 +36,11 @@ function createNote(data){
 };
 
 function createEmptyNote(taskTitle){
+  const project = getCurrentGroup();2
   const data = {
     title: taskTitle,
     project: undefined,
-    dueDate: "Due Date",
+    dueDate: undefined,
     priority: undefined,
     notes: undefined,
     id: crypto.randomUUID(),
@@ -74,4 +75,12 @@ function getNotes(){
   return notes;
 }
 
-export {createNote, getNotes, removeNote, getNote, createEmptyNote, getNoteIndex, updateCurrentNote, getCurrentNote};
+function updateCurrentGroup(group){
+  currentGroup = group;
+}
+
+function getCurrentGroup(){
+  return currentGroup;
+}
+
+export {createNote, getNotes, removeNote, getNote, createEmptyNote, getNoteIndex, updateCurrentNote, getCurrentNote, updateCurrentGroup, getCurrentGroup};
