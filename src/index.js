@@ -1,7 +1,7 @@
 import "./styles/style.css";
 import "./styles/css-reset-by-Josh-Cameau.css";
-import { displayHomePage } from "../displayPageContent";
+import { renderHomePage } from "../renderPageContent";
 import { initEventListeners } from "../handleEventListeners";
 
-displayHomePage();
+renderHomePage();
 initEventListeners();

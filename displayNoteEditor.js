@@ -1,6 +1,6 @@
 import { formatNoteDate } from "./helperFunctions";
 import { getCurrentNote } from "./handleNotes";
-import { getProjects } from "./handleProjects";
+import { getProjects } from "./handleProjects.js";
 
 const noteCard = document.querySelector(".taskEditor");
 

@@ -408,3 +408,81 @@ body{
 .taskTitleEditor{
   width: 100%;
 }
+
+/* Modal Overlay (Backdrop) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dimmed background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* The Modal Box */
+.modal-box {
+  background: #252525; /* Dark gray matches your theme */
+  padding: 2rem;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Close Button (X) */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: #fff; }
+
+/* The Input Field */
+.modal-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #444; /* Subtle underline */
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 0;
+  outline: none;
+  width: 100%;
+}
+.modal-input::placeholder { color: #666; }
+.modal-input:focus { border-bottom-color: #0078d7; }
+
+/* The Continue Button */
+.modal-btn {
+  background-color: #005a9e; /* Darker blue */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px; /* Pill shape */
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-end; /* Push to right */
+  transition: background 0.2s;
+}
+.modal-btn:hover { background-color: #0078d7; }
+.modal-btn:disabled { background-color: #444; cursor: not-allowed; opacity: 0.7; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

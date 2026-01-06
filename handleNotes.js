@@ -39,7 +39,7 @@ function createEmptyNote(taskTitle){
   const project = getCurrentGroup();2
   const data = {
     title: taskTitle,
-    project: undefined,
+    project: "Grocery List",
     dueDate: undefined,
     priority: undefined,
     notes: undefined,

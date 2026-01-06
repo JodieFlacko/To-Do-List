@@ -1,14 +1,15 @@
 import { createEmptyNote, getCurrentNote, updateCurrentNote, removeNote, updateCurrentGroup } from "./handleNotes";
 import { displayTaskElements } from "./displayNotes";
 import { displayTaskEditor, hideTaskEditor } from "./displayNoteEditor";
-import { displayContent } from "./displayPageContent";
+import { renderContent } from "./renderPageContent";
+import { showAddProjectModal } from "./createComponents";
 
 const form = document.querySelector(".addTaskForm");
 const tasksList = document.querySelector(".tasksListUl");
 const taskEditor = document.querySelector(".taskEditor");
 const datetimeEditor = document.querySelector('.taskDateEditor');
 const navbar = document.querySelector(".appSidebarNav_Items");
-
+const addProjectButton = document.querySelector(".AppSidebarEditButtonsBox");
 
 function addNoteFromForm(event, form){
   event.preventDefault();
@@ -58,7 +59,30 @@ function handleNavbar(event){
     const button = event.target.closest(".appSidebarGroupsItems_item_button")
     const group = button.querySelector(".appSidebarGroupsItems_item_categoryTitle").textContent;
     updateCurrentGroup(group);
-    displayContent(group);
+    renderContent(group);
+  }
+}
+
+function handleAddNewProjectButton(event){
+  if(!event.target.closest(".AppSidebarEditButtonsBox")) return;
+  else{
+    showAddProjectModal((newProjectName) => {
+          // --- THIS CODE RUNS LATER ---
+          // It only runs when the user hits "Continue" in the modal.
+          // 'newProjectName' is the text the user typed.
+
+          console.log('User finished typing:', newProjectName);
+
+          // A. Save to Data (Model)
+          const newProject = ProjectModel.addProject(newProjectName);
+
+          // B. Update Screen (View)
+          // We get the fresh list of projects and tell the sidebar to re-render
+          SidebarView.renderSidebar(ProjectModel.getProjects());
+          
+          // Optional: You could also switch to this new view immediately
+          // App.switchView(newProject.id); 
+      });
   }
 }
 
@@ -78,7 +102,9 @@ export function initEventListeners(){
     handleNavbar(event);
   });
 
-
+  addProjectButton.addEventListener("click", (event => {
+    handleAddNewProjectButton(event);
+  }))
 
   datetimeEditor.addEventListener('click', datetimeEditor.showPicker);
 

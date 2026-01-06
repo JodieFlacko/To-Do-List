@@ -40,27 +40,33 @@ const isWithinNextDays = (targetDate, daysToCheck) => {
   return targetDate >= today && targetDate <= futureDate;
 };
 
-function filterTasks(view, allTasks){
-  const today = getToday();
+const VIEW_FILTERS = {
+  "My Day": (task) => {
+    if (!task.dueDate) return false; // Usually "My Day" implies strict date
+    const taskDate = new Date(task.dueDate);
+    const today = getToday();
+    return isSameDay(taskDate, today);
+  },
   
-  return allTasks.filter(task =>{
-    // Always show notes without dates
-    if(!task.dueDate) return true;
+  "Next 7 Days": (task) => {
+    if (!task.dueDate) return false;
+    const taskDate = new Date(task.dueDate);
+    return isWithinNextDays(taskDate, 7); // Reusing your existing helper
+  },
 
-    // Process the date as a data object if it exists
-    const taskDate = new Date(task.dueDate)
-    if(view === "My Day"){
-      return isSameDay(today, taskDate);
-    }
+  "All My Tasks": (task) => true, // Return everything
+};
 
-    if(view === "Next 7 Days"){
-      return isWithinNextDays(taskDate, 7);
-    }
+function getTasksForView(viewName, allTasks) {
+  // 1. Check if the view matches a predefined strategy (My Day, Next 7 Days)
+  const strategy = VIEW_FILTERS[viewName];
 
-    else{
-      return true;
-    }
-  })
+  if (strategy) {
+    return allTasks.filter(strategy);
+  }
+
+  // 2. Fallback: If no strategy is found, assume 'viewName' is a Project Name
+  return allTasks.filter(task => task.project == viewName);
 }
 
-export {appendChildren, formatNoteDate, filterTasks};
+export {appendChildren, formatNoteDate, getTasksForView};

@@ -1,6 +1,6 @@
 import { getNotes } from "./handleNotes";
 import { createTaskListElement } from "./createComponents";
-import { filterTasks } from "./helperFunctions";
+import { getTasksForView } from "./helperFunctions";
 import { getCurrentGroup } from "./handleNotes";
 
 function displayTaskElements(){
@@ -10,7 +10,7 @@ function displayTaskElements(){
   // Display updated list
   const allTasks = getNotes();
   const group = getCurrentGroup();
-  const tasksToShow = filterTasks(group, allTasks);
+  const tasksToShow = getTasksForView(group, allTasks);
   tasksToShow.forEach(task => {
     const taskLi = createTaskListElement();
     const text = taskLi.querySelector("p");
